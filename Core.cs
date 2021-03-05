@@ -1,7 +1,8 @@
-﻿using System;
+﻿using ColorClippy.Views;
+using System;
 using System.Threading.Tasks;
 
-namespace Color_Clippy
+namespace ColorClippy
 {
     public static class Core
     {
@@ -22,7 +23,6 @@ namespace Color_Clippy
             }
 #endif
 
-            UiStyleManager.InitializeTheme();
             MainWindow = new MainWindow();
             MainWindow.LoadConfigSettings();
             MainWindow.Show();

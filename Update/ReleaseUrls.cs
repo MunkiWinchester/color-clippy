@@ -4,7 +4,7 @@ namespace ColorClippy.Update
     {
         private const string FieldLive = "live";
 
-        public string Live => "https://github.com/munkiwinchester/ColorClippy";
+        public string Live => "https://github.com/MunkiWinchester/color-clippy";
 
         public string GetReleaseUrl(string release) => Live;
     }

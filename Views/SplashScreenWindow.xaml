@@ -10,7 +10,7 @@
     Height="250"
     AllowsTransparency="True"
     Background="Transparent"
-    Icon="/ColorClippy;component/Resources/Images/Utilities-clock.ico"
+    Icon="/Color Clippy;component/Resources/Images/main.ico"
     ResizeMode="NoResize"
     ShowInTaskbar="True"
     WindowStartupLocation="CenterScreen"

@@ -4,9 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:Services="clr-namespace:WpfUtility.Services;assembly=WpfUtility"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:utility="clr-namespace:ColorClippy.Update"
+    xmlns:update="clr-namespace:ColorClippy.Update"
     mc:Ignorable="d">
     <UserControl.Resources>
         <ResourceDictionary>
@@ -19,17 +18,11 @@
             </Style>
             <Style x:Key="LabelBlockStyle" TargetType="{x:Type TextBlock}">
                 <Setter Property="HorizontalAlignment" Value="Left" />
-                <Setter Property="Foreground" Value="{StaticResource IdealForegroundColorBrush}" />
-            </Style>
-            <Style x:Key="IconStyle" TargetType="{x:Type iconPacks:PackIconControl}">
-                <Setter Property="Width" Value="10" />
-                <Setter Property="Height" Value="10" />
-                <Setter Property="Foreground" Value="{StaticResource LabelTextBrush}" />
             </Style>
         </ResourceDictionary>
     </UserControl.Resources>
     <Border
-        Background="{StaticResource ControlBackgroundBrush}"
+        Background="PapayaWhip"
         BorderBrush="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=AccentColor}"
         BorderThickness="2"
         Opacity="0.825">
@@ -58,9 +51,6 @@
                 <MenuItem.Header>
                     <TextBlock Style="{StaticResource LabelBlockStyle}" Text="Start" />
                 </MenuItem.Header>
-                <MenuItem.Icon>
-                    <iconPacks:PackIconControl Kind="{x:Static iconPacks:PackIconModernKind.ControlPlay}" Style="{StaticResource IconStyle}" />
-                </MenuItem.Icon>
             </MenuItem>
             <MenuItem
                 Grid.Row="0"
@@ -72,9 +62,6 @@
                 <MenuItem.Header>
                     <TextBlock Style="{StaticResource LabelBlockStyle}" Text="Stop" />
                 </MenuItem.Header>
-                <MenuItem.Icon>
-                    <iconPacks:PackIconControl Kind="{x:Static iconPacks:PackIconModernKind.ControlPause}" Style="{StaticResource IconStyle}" />
-                </MenuItem.Icon>
             </MenuItem>
             <MenuItem
                 Grid.Row="1"
@@ -85,9 +72,6 @@
                 <MenuItem.Header>
                     <TextBlock Style="{StaticResource LabelBlockStyle}" Text="Edit" />
                 </MenuItem.Header>
-                <MenuItem.Icon>
-                    <iconPacks:PackIconControl Kind="{x:Static iconPacks:PackIconModernKind.Edit}" Style="{StaticResource IconStyle}" />
-                </MenuItem.Icon>
             </MenuItem>
             <MenuItem
                 Grid.Row="2"
@@ -98,9 +82,6 @@
                 <MenuItem.Header>
                     <TextBlock Style="{StaticResource LabelBlockStyle}" Text="Settings" />
                 </MenuItem.Header>
-                <MenuItem.Icon>
-                    <iconPacks:PackIconControl Kind="{x:Static iconPacks:PackIconModernKind.Settings}" Style="{StaticResource IconStyle}" />
-                </MenuItem.Icon>
             </MenuItem>
             <MenuItem
                 Grid.Row="3"
@@ -111,9 +92,6 @@
                 <MenuItem.Header>
                     <TextBlock Style="{StaticResource LabelBlockStyle}" Text="About" />
                 </MenuItem.Header>
-                <MenuItem.Icon>
-                    <iconPacks:PackIconControl Kind="{x:Static iconPacks:PackIconModernKind.InformationCircle}" Style="{StaticResource IconStyle}" />
-                </MenuItem.Icon>
             </MenuItem>
             <MenuItem
                 Grid.Row="4"
@@ -125,9 +103,6 @@
                 <MenuItem.Header>
                     <TextBlock Style="{StaticResource LabelBlockStyle}" Text="Show" />
                 </MenuItem.Header>
-                <MenuItem.Icon>
-                    <iconPacks:PackIconControl Kind="{x:Static iconPacks:PackIconModernKind.WindowMaximize}" Style="{StaticResource IconStyle}" />
-                </MenuItem.Icon>
             </MenuItem>
             <MenuItem
                 Grid.Row="4"
@@ -139,9 +114,6 @@
                 <MenuItem.Header>
                     <TextBlock Style="{StaticResource LabelBlockStyle}" Text="Minimize" />
                 </MenuItem.Header>
-                <MenuItem.Icon>
-                    <iconPacks:PackIconControl Kind="{x:Static iconPacks:PackIconModernKind.WindowMinimize}" Style="{StaticResource IconStyle}" />
-                </MenuItem.Icon>
             </MenuItem>
             <MenuItem
                 Grid.Row="5"
@@ -149,13 +121,10 @@
                 Grid.ColumnSpan="2"
                 Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=UpdateCommand}"
                 Style="{StaticResource MenuItemStyle}"
-                Visibility="{Binding Visibility, Source={x:Static utility:Updater.StatusBar}}">
+                Visibility="{Binding Visibility, Source={x:Static update:Updater.StatusBar}}">
                 <MenuItem.Header>
                     <TextBlock Style="{StaticResource LabelBlockStyle}" Text="Update" />
                 </MenuItem.Header>
-                <MenuItem.Icon>
-                    <iconPacks:PackIconControl Kind="{x:Static iconPacks:PackIconModernKind.Download}" Style="{StaticResource IconStyle}" />
-                </MenuItem.Icon>
             </MenuItem>
             <Separator
                 Grid.Row="6"
@@ -171,9 +140,6 @@
                 <MenuItem.Header>
                     <TextBlock Style="{StaticResource LabelBlockStyle}" Text="Close" />
                 </MenuItem.Header>
-                <MenuItem.Icon>
-                    <iconPacks:PackIconControl Kind="{x:Static iconPacks:PackIconModernKind.Close}" Style="{StaticResource IconStyle}" />
-                </MenuItem.Icon>
             </MenuItem>
         </Grid>
     </Border>

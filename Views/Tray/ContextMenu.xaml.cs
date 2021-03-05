@@ -7,7 +7,7 @@ using WpfUtility.Services;
 namespace ColorClippy.Views.Tray
 {
     /// <summary>
-    /// Interaction logic for TrayToolTip.xaml
+    /// Interaction logic for ContextMenu.xaml
     /// </summary>
     public partial class ContextMenu : UserControl
     {

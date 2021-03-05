@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Color_Clippy.Properties
+namespace ColorClippy.Properties
 {
 
 
