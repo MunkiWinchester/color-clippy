@@ -1,0 +1,58 @@
+﻿<Application
+    x:Class="Color_Clippy.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:tb="http://www.hardcodet.net/taskbar"
+    Exit="Application_Exit"
+    Startup="Application_Startup"
+    StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!--  MahApps  -->
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
+                <!--  accent resource  -->
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Crimson.xaml" />
+                <!--  theme resource  -->
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseDark.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="{x:Type Label}">
+                <Setter Property="HorizontalAlignment" Value="Center" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="Padding" Value="5,0,5,0" />
+            </Style>
+            <Style TargetType="{x:Type TextBox}">
+                <Setter Property="Margin" Value="5" />
+            </Style>
+            <Style TargetType="{x:Type TextBlock}">
+                <Setter Property="HorizontalAlignment" Value="Center" />
+            </Style>
+            <Style TargetType="{x:Type Button}">
+                <Setter Property="Margin" Value="5" />
+                <Setter Property="Foreground" Value="#FF333333" />
+                <Setter Property="Background" Value="#FFD8D8D9" />
+            </Style>
+            <SolidColorBrush x:Key="DayRed">#8B2222</SolidColorBrush>
+            <SolidColorBrush x:Key="DayGreen">#228B22</SolidColorBrush>
+            <SolidColorBrush x:Key="PauseYellow">#FF8800</SolidColorBrush>
+            <SolidColorBrush x:Key="PauseGreen">#32CD32</SolidColorBrush>
+            <SolidColorBrush x:Key="WeekRed">#640000</SolidColorBrush>
+            <SolidColorBrush x:Key="WeekGreen">#006400</SolidColorBrush>
+            <ImageSource x:Key="ColorClippyImage">
+                /ColorClippy;component/Resources/Images/Temp.png
+            </ImageSource>
+            <ImageSource x:Key="ColorClippyIcon">
+                /ColorClippy;component/Resources/Images/main.ico
+            </ImageSource>
+            <ImageSource x:Key="ColorClippyIconPng">
+                /ColorClippy;component/Resources/Images/main.png
+            </ImageSource>
+            <tb:TaskbarIcon
+                x:Key="TaskbarIcon"
+                IconSource="/Resources/Images/main.ico"
+                PopupActivation="RightClick" />
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
