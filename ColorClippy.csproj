@@ -7,8 +7,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{1ECBF139-E60D-4509-BF4C-1FB12897FC1F}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Color_Clippy</RootNamespace>
-    <AssemblyName>Color Clippy</AssemblyName>
+    <RootNamespace>ColorClippy</RootNamespace>
+    <AssemblyName>ColorClippy</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -116,11 +116,13 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Business\Settings.cs" />
+    <Compile Include="DataObjetcs\ColorCollection.cs" />
     <Compile Include="DataObjetcs\SettingsObject.cs" />
     <Compile Include="Update\ReleaseUrls.cs" />
     <Compile Include="Update\StatusBarHelper.cs" />
     <Compile Include="Update\Updater.cs" />
     <Compile Include="Update\Updater.Squirrel.cs" />
+    <Compile Include="ViewModels\ContextViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Views\AboutWindow.xaml.cs">
       <DependentUpon>AboutWindow.xaml</DependentUpon>

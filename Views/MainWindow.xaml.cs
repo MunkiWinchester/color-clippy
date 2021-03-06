@@ -53,8 +53,6 @@ namespace ColorClippy
             if (_taskbarIcon.TrayPopup is Views.Tray.ContextMenu contextMenu)
             {
                 contextMenu.CloseCommand = new DelegateCommand(Close);
-                contextMenu.MinimizeShowCommand = new DelegateCommand(() => NotifyIconOnClick(WindowState == WindowState.Normal));
-                contextMenu.AboutCommand = _viewModel.AboutClickedCommand;
             }
         }
 
@@ -81,17 +79,11 @@ namespace ColorClippy
                 Activate();
                 Show();
                 WindowState = WindowState.Normal;
-
-                if (contextMenu != null)
-                    contextMenu.IsMinimized = false;
-            }
+                            }
             else
             {
                 Hide();
                 WindowState = WindowState.Minimized;
-
-                if (contextMenu != null)
-                    contextMenu.IsMinimized = true;
             }
         }
 

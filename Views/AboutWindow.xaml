@@ -6,7 +6,7 @@
     x:Name="_metroWindow"
     Title="About"
     Width="180"
-    Height="180"
+    Height="240"
     Mc:Ignorable="D"
     BorderThickness="1"
     ResizeMode="NoResize"

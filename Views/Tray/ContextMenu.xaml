@@ -4,9 +4,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:Services="clr-namespace:WpfUtility.Services;assembly=WpfUtility"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:dataObjects="clr-namespace:ColorClippy.DataObjects"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:update="clr-namespace:ColorClippy.Update"
+    xmlns:viewModels="clr-namespace:ColorClippy.ViewModels"
     mc:Ignorable="d">
+    <UserControl.DataContext>
+        <viewModels:ContextViewModel />
+    </UserControl.DataContext>
     <UserControl.Resources>
         <ResourceDictionary>
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
@@ -19,6 +23,44 @@
             <Style x:Key="LabelBlockStyle" TargetType="{x:Type TextBlock}">
                 <Setter Property="HorizontalAlignment" Value="Left" />
             </Style>
+            <DataTemplate DataType="{x:Type dataObjects:ColorItem}">
+                <StackPanel Orientation="Horizontal">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Rectangle Fill="{Binding Path=Color}" />
+                        <Label Content="{Binding Path=Name}" />
+                    </Grid>
+                    <!--  the other controls with bindings  -->
+                </StackPanel>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type dataObjects:ColorCollection}">
+                <StackPanel Orientation="Horizontal">
+                    <Button
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Content="{Binding Path=Name}">
+                        <Button.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Menu item 1" />
+                                <MenuItem Header="Menu item 2" />
+                                <Separator />
+                                <MenuItem Header="Menu item 3" />
+                            </ContextMenu>
+                        </Button.ContextMenu>
+                    </Button>
+                    <!--  the other controls with bindings  -->
+                    <Label Content="{Binding Path=Name}" />
+                    <Menu>
+                        <ItemsControl
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            ItemsSource="{Binding Path=Items}" />
+                    </Menu>
+                </StackPanel>
+            </DataTemplate>
         </ResourceDictionary>
     </UserControl.Resources>
     <Border
@@ -29,112 +71,23 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
-                <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
                 <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
             </Grid.RowDefinitions>
-            <MenuItem
+            <ItemsControl
                 Grid.Row="0"
                 Grid.Column="0"
-                Grid.ColumnSpan="2"
-                Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=StartStopCommand}"
-                Style="{StaticResource MenuItemStyle}"
-                Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=IsRunning, Converter={StaticResource NegatedBooleanToVisibilityConverter}}">
-                <MenuItem.Header>
-                    <TextBlock Style="{StaticResource LabelBlockStyle}" Text="Start" />
-                </MenuItem.Header>
-            </MenuItem>
-            <MenuItem
-                Grid.Row="0"
-                Grid.Column="0"
-                Grid.ColumnSpan="2"
-                Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=StartStopCommand}"
-                Style="{StaticResource MenuItemStyle}"
-                Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <MenuItem.Header>
-                    <TextBlock Style="{StaticResource LabelBlockStyle}" Text="Stop" />
-                </MenuItem.Header>
-            </MenuItem>
-            <MenuItem
+                ItemsSource="{Binding MySearchItems}" />
+            <Separator
                 Grid.Row="1"
                 Grid.Column="0"
-                Grid.ColumnSpan="2"
-                Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=EditCommand}"
-                Style="{StaticResource MenuItemStyle}">
-                <MenuItem.Header>
-                    <TextBlock Style="{StaticResource LabelBlockStyle}" Text="Edit" />
-                </MenuItem.Header>
-            </MenuItem>
+                Background="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=AccentColor}" />
             <MenuItem
                 Grid.Row="2"
                 Grid.Column="0"
-                Grid.ColumnSpan="2"
-                Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=SettingsCommand}"
-                Style="{StaticResource MenuItemStyle}">
-                <MenuItem.Header>
-                    <TextBlock Style="{StaticResource LabelBlockStyle}" Text="Settings" />
-                </MenuItem.Header>
-            </MenuItem>
-            <MenuItem
-                Grid.Row="3"
-                Grid.Column="0"
-                Grid.ColumnSpan="2"
-                Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=AboutCommand}"
-                Style="{StaticResource MenuItemStyle}">
-                <MenuItem.Header>
-                    <TextBlock Style="{StaticResource LabelBlockStyle}" Text="About" />
-                </MenuItem.Header>
-            </MenuItem>
-            <MenuItem
-                Grid.Row="4"
-                Grid.Column="0"
-                Grid.ColumnSpan="2"
-                Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=MinimizeShowCommand}"
-                Style="{StaticResource MenuItemStyle}"
-                Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=IsMinimized, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <MenuItem.Header>
-                    <TextBlock Style="{StaticResource LabelBlockStyle}" Text="Show" />
-                </MenuItem.Header>
-            </MenuItem>
-            <MenuItem
-                Grid.Row="4"
-                Grid.Column="0"
-                Grid.ColumnSpan="2"
-                Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=MinimizeShowCommand}"
-                Style="{StaticResource MenuItemStyle}"
-                Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=IsMinimized, Converter={StaticResource NegatedBooleanToVisibilityConverter}}">
-                <MenuItem.Header>
-                    <TextBlock Style="{StaticResource LabelBlockStyle}" Text="Minimize" />
-                </MenuItem.Header>
-            </MenuItem>
-            <MenuItem
-                Grid.Row="5"
-                Grid.Column="0"
-                Grid.ColumnSpan="2"
-                Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=UpdateCommand}"
-                Style="{StaticResource MenuItemStyle}"
-                Visibility="{Binding Visibility, Source={x:Static update:Updater.StatusBar}}">
-                <MenuItem.Header>
-                    <TextBlock Style="{StaticResource LabelBlockStyle}" Text="Update" />
-                </MenuItem.Header>
-            </MenuItem>
-            <Separator
-                Grid.Row="6"
-                Grid.Column="0"
-                Grid.ColumnSpan="2"
-                Background="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=AccentColor}" />
-            <MenuItem
-                Grid.Row="7"
-                Grid.Column="0"
-                Grid.ColumnSpan="2"
                 Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=CloseCommand}"
                 Style="{StaticResource MenuItemStyle}">
                 <MenuItem.Header>
