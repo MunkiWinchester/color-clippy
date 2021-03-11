@@ -13,74 +13,92 @@
     </UserControl.DataContext>
     <UserControl.Resources>
         <ResourceDictionary>
-            <Style x:Key="Triggers" TargetType="{x:Type MenuItem}">
+
+            <Style x:Key="Menuitem" TargetType="MenuItem">
+                <Setter Property="Height" Value="35" />
+                <Setter Property="Width" Value="200" />
+                <Setter Property="Foreground" Value="WhiteSmoke" />
+            </Style>
+
+            <Style x:Key="Popup" TargetType="{x:Type Popup}">
+                <Setter Property="IsOpen" Value="True" />
                 <Style.Triggers>
-                    <Trigger Property="MenuItem.IsMouseOver" Value="true">
-                        <Setter Property="FontSize" Value="16" />
-                        <Setter Property="FontStyle" Value="Italic" />
-                        <Setter Property="Foreground" Value="Red" />
-                    </Trigger>
+                    <MultiDataTrigger>
+                        <MultiDataTrigger.Conditions>
+                            <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PlacementTarget.IsMouseOver}" Value="False" />
+                            <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="False" />
+                        </MultiDataTrigger.Conditions>
+                        <Setter Property="IsOpen" Value="False" />
+                    </MultiDataTrigger>
                 </Style.Triggers>
             </Style>
+
             <DataTemplate DataType="{x:Type dataObjects:ColorItem}">
-                <MenuItem>
-                    <StackPanel Orientation="Horizontal">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
-                            <Rectangle
-                                Width="20"
-                                Height="20"
-                                Fill="{Binding Path=Color}" />
-                            <Label Grid.Column="1" Content="{Binding Path=Name}" />
-                        </Grid>
-                        <!--  the other controls with bindings  -->
-                    </StackPanel>
+                <MenuItem Style="{StaticResource Menuitem}">
+                    <MenuItem.Icon>
+                        <Rectangle
+                            Width="20"
+                            Height="20"
+                            Fill="{Binding Path=Color}" />
+                    </MenuItem.Icon>
+                    <MenuItem.Header>
+                        <TextBlock Text="{Binding Path=Name}" />
+                    </MenuItem.Header>
                 </MenuItem>
             </DataTemplate>
             <DataTemplate DataType="{x:Type dataObjects:ColorCollection}">
-                <StackPanel Orientation="Vertical">
-                    <Menu>
-                        <MenuItem Header="{Binding Path=Name}">
-                            <ItemsControl
-                                Grid.Row="0"
-                                Grid.Column="0"
-                                ItemsSource="{Binding Path=Items}" />
-                        </MenuItem>
-                    </Menu>
+                <StackPanel Background="#333333" Opacity="0.825">
+                    <MenuItem Style="{StaticResource Menuitem}">
+                        <MenuItem.Header>
+                            <Grid VerticalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{Binding Path=Name}" />
+                                <Path
+                                    Name="SelectedArrow"
+                                    Margin="100,0,0,0"
+                                    Data="M 0 12 L 6 6 L 0 0"
+                                    Stroke="WhiteSmoke" />
+                            </Grid>
+                        </MenuItem.Header>
+                    </MenuItem>
+
+                    <Popup
+                        Name="Popup"
+                        Focusable="True"
+                        HorizontalOffset="50"
+                        Placement="Left"
+                        PlacementTarget="{Binding RelativeSource={RelativeSource TemplatedParent}}"
+                        PopupAnimation="Fade"
+                        Style="{StaticResource Popup}">
+                        <Border
+                            Background="#333333"
+                            BorderBrush="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=AccentColor}"
+                            BorderThickness="0.9"
+                            Opacity="0.825">
+                            <StackPanel>
+                                <ItemsControl ItemsSource="{Binding Path=Items}" />
+                            </StackPanel>
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </DataTemplate>
         </ResourceDictionary>
     </UserControl.Resources>
     <Border
-        Background="PapayaWhip"
         BorderBrush="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=AccentColor}"
         BorderThickness="2"
         Opacity="0.825">
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <ItemsControl
-                Grid.Row="0"
-                Grid.Column="0"
-                ItemsSource="{Binding MySearchItems}" />
-            <Separator
-                Grid.Row="1"
-                Grid.Column="0"
-                Background="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=AccentColor}" />
+        <StackPanel Background="#333333">
+            <ItemsControl ItemsSource="{Binding MySearchItems}" />
+            <Separator Background="WhiteSmoke" />
             <MenuItem
-                Grid.Row="2"
-                Grid.Column="0"
+                Name="Close"
                 Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=CloseCommand}"
-                Header="Close" />
-        </Grid>
+                Header="Close"
+                Style="{StaticResource Menuitem}" />
+        </StackPanel>
     </Border>
 </UserControl>
