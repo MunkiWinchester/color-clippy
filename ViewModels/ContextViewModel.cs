@@ -25,16 +25,23 @@ namespace ColorClippy.ViewModels
         {
             var i = new List<ColorItem>
             {
-                new ColorItem("grau", "#212121")
-            };
-            var coll = new ColorCollection
-            {
-                Name = "Test",
-                Items = i
+                new ColorItem("grau", "#212121"),
+                new ColorItem("red", "#ff0000"),
+                new ColorItem("green", "#00ff00"),
+                new ColorItem("blue", "#0000ff")
             };
             var l = new List<ColorCollection>
             {
-                coll
+                new ColorCollection
+                {
+                    Name = "Test",
+                    Items = i
+                },
+                new ColorCollection
+                {
+                    Name = "Test 2",
+                    Items = i
+                }
             };
             this.MySearchItems = new ObservableCollection<ColorCollection>(l);
         }

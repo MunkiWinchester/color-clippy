@@ -13,51 +13,42 @@
     </UserControl.DataContext>
     <UserControl.Resources>
         <ResourceDictionary>
-            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-            <Services:NegatedBooleanToVisibilityConverter x:Key="NegatedBooleanToVisibilityConverter" />
-            <Style x:Key="MenuItemStyle" TargetType="{x:Type MenuItem}">
-                <Setter Property="VerticalContentAlignment" Value="Center" />
-                <Setter Property="HorizontalContentAlignment" Value="Left" />
-                <Setter Property="Margin" Value="2" />
-            </Style>
-            <Style x:Key="LabelBlockStyle" TargetType="{x:Type TextBlock}">
-                <Setter Property="HorizontalAlignment" Value="Left" />
+            <Style x:Key="Triggers" TargetType="{x:Type MenuItem}">
+                <Style.Triggers>
+                    <Trigger Property="MenuItem.IsMouseOver" Value="true">
+                        <Setter Property="FontSize" Value="16" />
+                        <Setter Property="FontStyle" Value="Italic" />
+                        <Setter Property="Foreground" Value="Red" />
+                    </Trigger>
+                </Style.Triggers>
             </Style>
             <DataTemplate DataType="{x:Type dataObjects:ColorItem}">
-                <StackPanel Orientation="Horizontal">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <Rectangle Fill="{Binding Path=Color}" />
-                        <Label Content="{Binding Path=Name}" />
-                    </Grid>
-                    <!--  the other controls with bindings  -->
-                </StackPanel>
+                <MenuItem>
+                    <StackPanel Orientation="Horizontal">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Rectangle
+                                Width="20"
+                                Height="20"
+                                Fill="{Binding Path=Color}" />
+                            <Label Grid.Column="1" Content="{Binding Path=Name}" />
+                        </Grid>
+                        <!--  the other controls with bindings  -->
+                    </StackPanel>
+                </MenuItem>
             </DataTemplate>
             <DataTemplate DataType="{x:Type dataObjects:ColorCollection}">
-                <StackPanel Orientation="Horizontal">
-                    <Button
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        Content="{Binding Path=Name}">
-                        <Button.ContextMenu>
-                            <ContextMenu>
-                                <MenuItem Header="Menu item 1" />
-                                <MenuItem Header="Menu item 2" />
-                                <Separator />
-                                <MenuItem Header="Menu item 3" />
-                            </ContextMenu>
-                        </Button.ContextMenu>
-                    </Button>
-                    <!--  the other controls with bindings  -->
-                    <Label Content="{Binding Path=Name}" />
+                <StackPanel Orientation="Vertical">
                     <Menu>
-                        <ItemsControl
-                            Grid.Row="0"
-                            Grid.Column="0"
-                            ItemsSource="{Binding Path=Items}" />
+                        <MenuItem Header="{Binding Path=Name}">
+                            <ItemsControl
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                ItemsSource="{Binding Path=Items}" />
+                        </MenuItem>
                     </Menu>
                 </StackPanel>
             </DataTemplate>
@@ -89,11 +80,7 @@
                 Grid.Row="2"
                 Grid.Column="0"
                 Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=CloseCommand}"
-                Style="{StaticResource MenuItemStyle}">
-                <MenuItem.Header>
-                    <TextBlock Style="{StaticResource LabelBlockStyle}" Text="Close" />
-                </MenuItem.Header>
-            </MenuItem>
+                Header="Close" />
         </Grid>
     </Border>
 </UserControl>
