@@ -71,7 +71,6 @@
                     <Popup
                         Name="Popup"
                         Focusable="True"
-                        HorizontalOffset="50"
                         Placement="Left"
                         PlacementTarget="{Binding RelativeSource={RelativeSource TemplatedParent}}"
                         PopupAnimation="Fade"
