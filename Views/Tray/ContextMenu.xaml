@@ -42,7 +42,8 @@
                         <Rectangle
                             Width="20"
                             Height="20"
-                            Fill="{Binding Path=Color}" />
+                            Fill="{Binding Path=Color}"
+                            Opacity="1" />
                     </MenuItem.Icon>
                     <MenuItem.Header>
                         <TextBlock Text="{Binding Path=Name}" />
@@ -50,38 +51,20 @@
                 </MenuItem>
             </DataTemplate>
             <DataTemplate DataType="{x:Type dataObjects:ColorCollection}">
-                <StackPanel Background="#333333" Opacity="0.825">
-                    <MenuItem Style="{StaticResource Menuitem}">
-                        <MenuItem.Header>
-                            <Grid VerticalAlignment="Center">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Text="{Binding Path=Name}" />
-                                <Path
-                                    Name="SelectedArrow"
-                                    Margin="100,0,0,0"
-                                    Data="M 0 12 L 6 6 L 0 0"
-                                    Stroke="WhiteSmoke" />
-                            </Grid>
-                        </MenuItem.Header>
-                    </MenuItem>
+                <StackPanel>
+                    <MenuItem Header="{Binding Path=Name}" Style="{StaticResource Menuitem}" />
 
                     <Popup
                         Name="Popup"
+                        AllowsTransparency="True"
                         Focusable="True"
                         Placement="Left"
                         PlacementTarget="{Binding RelativeSource={RelativeSource TemplatedParent}}"
                         PopupAnimation="Fade"
                         Style="{StaticResource Popup}">
-                        <Border
-                            Background="#333333"
-                            BorderBrush="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=AccentColor}"
-                            BorderThickness="0.9"
-                            Opacity="0.825">
-                            <StackPanel>
-                                <ItemsControl ItemsSource="{Binding Path=Items}" />
+                        <Border BorderBrush="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=AccentColor}" Opacity="0.825">
+                            <StackPanel Background="#333333">
+                                <ItemsControl ItemsSource="{Binding Path=Items}"/>
                             </StackPanel>
                         </Border>
                     </Popup>
@@ -89,11 +72,8 @@
             </DataTemplate>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Border
-        BorderBrush="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=AccentColor}"
-        BorderThickness="2"
-        Opacity="0.825">
-        <StackPanel Background="#333333">
+    <Border BorderBrush="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=AccentColor}" BorderThickness="2">
+        <StackPanel Background="#333333" Opacity="0.825">
             <ItemsControl ItemsSource="{Binding MySearchItems}" />
             <Separator Background="WhiteSmoke" />
             <MenuItem

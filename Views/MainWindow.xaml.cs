@@ -57,6 +57,15 @@ namespace ColorClippy
         /// <param name="eventArgs"></param>
         private void NotifyIconOnClick(bool minimizeToTray)
         {
+
+            // TODO: Minimize to tray instead of close
+            // TODO: Implement About button
+            // TODO: Implement Update button
+            // TODO: Implement Close button
+            // TODO: Implement UI for editing color coll.
+            // TODO: Make context menu prettier
+
+
             // var contextMenu = _taskbarIcon.TrayPopup as Views.Tray.ContextMenu;
 
             if (!minimizeToTray)
