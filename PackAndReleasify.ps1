@@ -67,10 +67,10 @@ if($IncreaseVersion -eq $true)
     [System.Io.File]::WriteAllText((Resolve-Path .\Properties\AssemblyInfo.cs), $assembly);
 }
 
-Invoke-Command -ScriptBlock { & "C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\MSBuild\15.0\Bin\MSBuild.exe" ..\ColorClippy.sln /t:Build /p:Configuration=Release };
+Invoke-Command -ScriptBlock { & "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\MSBuild\Current\Bin\MSBuild.exe" ColorClippy.sln /t:Build /p:Configuration=Release };
 
-$nuget    = Get-ChildItem -Path ..\packages\ -Recurse -Filter NuGet.exe    | Select-Object -ExpandProperty FullName;
-$squirrel = Get-ChildItem -Path ..\packages\ -Recurse -Filter Squirrel.exe | Select-Object -ExpandProperty FullName;
+$nuget    = Get-ChildItem -Path .\packages -Recurse -Filter NuGet.exe    | Select-Object -ExpandProperty FullName;
+$squirrel = Get-ChildItem -Path .\packages -Recurse -Filter Squirrel.exe | Select-Object -ExpandProperty FullName;
 
 $OutDir = Join-Path $PSScriptRoot "Publish";
 $Version = ([XML] (Get-Content .\ColorClippy.nuspec)).Package.Metadata.Version;
