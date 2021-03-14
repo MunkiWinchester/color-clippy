@@ -8,7 +8,7 @@ namespace ColorClippy.Business
     {
         public static DirectoryInfo GetJsonSaveLocation()
         {
-            var location = Path.Combine(GetBaseSaveDirectory(), DateTime.Now.Year.ToString());
+            var location = Path.Combine(GetBaseSaveDirectory(), "ColorCollections");
             if (!Directory.Exists(location))
                 Directory.CreateDirectory(location);
             DirectoryInfo dirInfo = new DirectoryInfo(location);

@@ -16,9 +16,9 @@ namespace ColorClippy
         /// <summary>
         /// Contains the view model
         /// </summary>
-        private MainWindowViewModel _viewModel = new MainWindowViewModel();
+        private readonly MainWindowViewModel _viewModel = new MainWindowViewModel();
 
-        private TaskbarIcon _taskbarIcon;
+        private readonly TaskbarIcon _taskbarIcon;
 
         public MainWindow()
         {
@@ -57,7 +57,7 @@ namespace ColorClippy
         /// <param name="eventArgs"></param>
         private void NotifyIconOnClick(bool minimizeToTray)
         {
-            var contextMenu = _taskbarIcon.TrayPopup as Views.Tray.ContextMenu;
+            // var contextMenu = _taskbarIcon.TrayPopup as Views.Tray.ContextMenu;
 
             if (!minimizeToTray)
             {

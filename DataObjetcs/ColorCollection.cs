@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.Windows.Media;
 
 namespace ColorClippy.DataObjects
@@ -14,6 +15,7 @@ namespace ColorClippy.DataObjects
     {
         public string HexCode { get; private set; }
         public string Name { get; private set; }
+        [JsonIgnore]
         public SolidColorBrush Color { get; private set; }
 
         public ColorItem(string name, string hexCode)

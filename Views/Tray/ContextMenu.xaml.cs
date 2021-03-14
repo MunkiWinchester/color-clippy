@@ -1,4 +1,8 @@
-﻿using System.Windows;
+﻿using ColorClippy.Business;
+using ColorClippy.DataObjects;
+using Hardcodet.Wpf.TaskbarNotification;
+using System.Threading;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using WpfUtility.Services;
@@ -26,9 +30,37 @@ namespace ColorClippy.Views.Tray
             set => SetValue(CloseCommandProperty, value);
         }
 
+        /// <summary>
+        /// DependencyProperty for the progress bar color
+        /// </summary>
+        public static readonly DependencyProperty ColorItemCommandProperty = DependencyProperty.Register(
+            nameof(ColorItemCommand), typeof(ICommand), typeof(ContextMenu),
+            new PropertyMetadata(new DelegateCommand(() => { })));
+
+        /// <summary>
+        /// Value of the top label
+        /// </summary>
+        public ICommand ColorItemCommand
+        {
+            get => (ICommand)GetValue(ColorItemCommandProperty);
+            set => SetValue(ColorItemCommandProperty, value);
+        }
+
         public ContextMenu()
         {
             InitializeComponent();
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            using (new WaitCursor())
+            {
+                var obMenuItem = e.OriginalSource as MenuItem;
+                var colorItem = obMenuItem.Tag as ColorItem;
+                Clipboard.SetText(colorItem.HexCode);
+
+                Thread.Sleep(200);
+            }
         }
     }
 }

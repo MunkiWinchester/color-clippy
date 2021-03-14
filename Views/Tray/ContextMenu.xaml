@@ -34,7 +34,10 @@
             </Style>
 
             <DataTemplate DataType="{x:Type dataObjects:ColorItem}">
-                <MenuItem Style="{StaticResource Menuitem}">
+                <MenuItem
+                    Click="MenuItem_Click"
+                    Style="{StaticResource Menuitem}"
+                    Tag="{Binding .}">
                     <MenuItem.Icon>
                         <Rectangle
                             Width="20"

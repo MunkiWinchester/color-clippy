@@ -63,20 +63,10 @@ namespace ColorClippy.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon main_ico {
+        internal static System.Drawing.Icon clippy_ico {
             get {
-                object obj = ResourceManager.GetObject("main_ico", resourceCulture);
+                object obj = ResourceManager.GetObject("clippy_ico", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap main_png {
-            get {
-                object obj = ResourceManager.GetObject("main_png", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }

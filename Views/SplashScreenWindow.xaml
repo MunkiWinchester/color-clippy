@@ -10,7 +10,7 @@
     Height="250"
     AllowsTransparency="True"
     Background="Transparent"
-    Icon="/Color Clippy;component/Resources/Images/main.ico"
+    Icon="/ColorClippy;component/Resources/Images/main.ico"
     ResizeMode="NoResize"
     ShowInTaskbar="True"
     WindowStartupLocation="CenterScreen"
@@ -31,11 +31,11 @@
             BorderBrush="Black"
             BorderThickness="5"
             CornerRadius="160" />
-        <Rectangle Width="150" Height="150">
+        <Rectangle Height="135">
             <Rectangle.Fill>
-                <VisualBrush>
+                <VisualBrush Stretch="Uniform">
                     <VisualBrush.Visual>
-                        <Image Source="{StaticResource ColorClippyIconPng}" />
+                        <Image Source="{StaticResource ClippyIconPng}" />
                     </VisualBrush.Visual>
                 </VisualBrush>
             </Rectangle.Fill>

@@ -6,11 +6,11 @@
     Startup="Application_Startup">
     <Application.Resources>
         <ResourceDictionary>
-            <ImageSource x:Key="ColorClippyIcon">
-                /Resources/Images/main.ico
+            <ImageSource x:Key="ClippyIcon">
+                /ColorClippy;component/Resources/Images/main.ico
             </ImageSource>
-            <ImageSource x:Key="ColorClippyIconPng">
-                /Resources/Images/main.png
+            <ImageSource x:Key="ClippyIconPng">
+                /ColorClippy;component/Resources/Images/main.png
             </ImageSource>
             <tb:TaskbarIcon
                 x:Key="TaskbarIcon"
