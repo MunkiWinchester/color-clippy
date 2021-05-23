@@ -30,6 +30,19 @@ namespace ColorClippy.Views.Tray
             set => SetValue(CloseCommandProperty, value);
         }
 
+
+        public static readonly DependencyProperty IsLoadingProperty =
+            DependencyProperty.Register(nameof(IsLoading), typeof(bool), typeof(ContextMenu),
+                new PropertyMetadata(false));
+        /// <summary>
+        ///     Gets or sets a value indicating whether this animation is shown.
+        /// </summary>
+        public bool IsLoading
+        {
+            get => (bool)GetValue(IsLoadingProperty);
+            set => SetValue(IsLoadingProperty, value);
+        }
+
         /// <summary>
         /// DependencyProperty for the progress bar color
         /// </summary>
@@ -55,11 +68,13 @@ namespace ColorClippy.Views.Tray
         {
             using (new WaitCursor())
             {
+                IsLoading = true;
                 var obMenuItem = e.OriginalSource as MenuItem;
                 var colorItem = obMenuItem.Tag as ColorItem;
                 Clipboard.SetText(colorItem.HexCode);
 
                 Thread.Sleep(200);
+                IsLoading = false;
             }
         }
     }
